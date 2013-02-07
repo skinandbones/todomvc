@@ -6,7 +6,7 @@ var app = app || {};
 	// Todo Router
 	// ----------
 
-	var Workspace = Morphine.Router.extend({
+	app.Router = Morphine.Router.extend({
 		routes:{
 			'*filter': 'setFilter'
 		},
@@ -21,7 +21,4 @@ var app = app || {};
 		}
 	});
 
-	var todoRouter = new Workspace();
-  Morphine.Injector.instance().mapValue('router', todoRouter);
-	Backbone.history.start();
 }());

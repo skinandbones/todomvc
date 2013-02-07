@@ -19,5 +19,4 @@ var app = app || {};
     }
 	});
 
-  Morphine.Injector.instance().mapSingleton('todoListFilter', app.TodoListFilter);
 }());

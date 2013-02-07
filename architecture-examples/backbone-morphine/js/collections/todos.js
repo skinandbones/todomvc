@@ -28,21 +28,17 @@ var app = app || {};
 			return this.without.apply( this, this.completed() );
 		},
 
-		// We keep the Todos in sequential order, despite being saved by unordered
-		// GUID in the database. This generates the next order number for new items.
-		nextOrder: function() {
+		nextPosition: function() {
 			if ( !this.length ) {
 				return 1;
 			}
-			return this.last().get('order') + 1;
+			return this.last().get('position') + 1;
 		},
 
 		// Todos are sorted by their original insertion order.
 		comparator: function( todo ) {
-			return todo.get('order');
+			return todo.get('position');
 		}
 	});
-
-  Morphine.Injector.instance().mapSingleton('todoList', app.TodoList);
 
 }());
