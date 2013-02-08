@@ -95,27 +95,12 @@ var app = app || {};
 			this.todos.each(this.filterOne, this);
 		},
 
-		// Generate the attributes for a new Todo item.
-		newAttributes: function() {
-			return {
-				title: this.$input.val().trim(),
-				position: this.todos.nextPosition(),
-				completed: false
-			};
-		},
-
-		// If you hit return in the main input field, create new **Todo** model,
-		// persisting it to *localStorage*.
 		createOnEnter: function( e ) {
-			if ( e.which !== ENTER_KEY || !this.$input.val().trim() ) {
-				return;
-			}
-
-			this.todos.create( this.newAttributes() );
+			if ( e.which !== ENTER_KEY || !this.$input.val().trim() ) { return; }
+      this.context.trigger('command:todos:create', this.$input.val().trim());
 			this.$input.val('');
 		},
 
-		// Clear all completed todo items, destroying their models.
 		clearCompleted: function() {
       this.context.trigger('command:todos:clearCompleted');
 			return false;
@@ -123,12 +108,7 @@ var app = app || {};
 
 		toggleAllComplete: function() {
 			var completed = this.allCheckbox.checked;
-
-			this.todos.each(function( todo ) {
-				todo.save({
-					'completed': completed
-				});
-			});
+      this.context.trigger('command:todos:toggleAllComplete', completed);
 		}
 	});
 }).call(this);

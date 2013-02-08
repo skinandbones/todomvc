@@ -2,13 +2,17 @@ var app = app || {};
 var ENTER_KEY = 13;
 
 $(function() {
-  // Morphine Setup
-  injector = Morphine.Injector.instance();
-  injector.mapSingleton('todoList', app.TodoList);
-  injector.mapSingleton('todoListFilter', app.TodoListFilter);
-
-  context = Morphine.Context.instance();
-  context.mapCommand('command:todos:clearCompleted', app.ClearCompletedTodosCommand);
+  Morphine.setup({
+    singletons: {
+      'todoList': app.TodoList,
+      'todoListFilter': app.TodoListFilter
+    },
+    commands: {
+      'command:todos:create': app.CreateTodoCommand,
+      'command:todos:clearCompleted': app.ClearCompletedTodosCommand,
+      'command:todos:toggleAllComplete': app.ToggleAllCompleteCommand
+    }
+  });
   
   // Start the router after injections have been configured.
 	new app.Router();
