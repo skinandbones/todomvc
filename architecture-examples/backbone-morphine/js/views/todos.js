@@ -1,6 +1,6 @@
 var app = app || {};
 
-$(function() {
+(function() {
 	'use strict';
 
 	// Todo Item View
@@ -95,4 +95,4 @@ $(function() {
 			this.model.destroy();
 		}
 	});
-});
+}).call(this);

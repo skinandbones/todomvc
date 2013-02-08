@@ -1,6 +1,6 @@
 var app = app || {};
 
-$(function( $ ) {
+(function() {
 	'use strict';
 
 	// The Application
@@ -117,7 +117,7 @@ $(function( $ ) {
 
 		// Clear all completed todo items, destroying their models.
 		clearCompleted: function() {
-			_.invoke(this.todos.completed(), 'destroy');
+      this.context.trigger('command:todos:clearCompleted');
 			return false;
 		},
 
@@ -131,4 +131,4 @@ $(function( $ ) {
 			});
 		}
 	});
-});
+}).call(this);

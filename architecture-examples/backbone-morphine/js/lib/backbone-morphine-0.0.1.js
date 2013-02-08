@@ -28,7 +28,7 @@
         function n() {
             Morphine.Injector.instance().injectInto(this);
         }
-        return n.prototype.execute = function() {
+        return n.extend = Backbone.Model.extend, n.prototype.execute = function() {
             throw Error("Execute not implemented.");
         }, n;
     }();

@@ -41,4 +41,4 @@ var app = app || {};
 		}
 	});
 
-}());
+}).call(this);
